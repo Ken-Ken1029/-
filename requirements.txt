@@ -8,3 +8,7 @@ werkzeug
 pydub
 imgocr
 openai
+onnxruntime
+opencv-python-headless
+numpy
+Pillow
