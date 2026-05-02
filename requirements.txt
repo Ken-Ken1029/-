@@ -2,7 +2,7 @@ flask
 mysql-connector-python
 flask_cors
 requests
-PyTorch
+torch
 opencc
 werkzeug
 pydub
