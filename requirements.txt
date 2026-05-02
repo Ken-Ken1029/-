@@ -7,3 +7,4 @@ opencc
 werkzeug
 pydub
 imgocr
+openai
