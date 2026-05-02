@@ -1,4 +1,4 @@
-python-3.8.10
+python-3.11.9
 flask
 mysql-connector-python
 flask_cors
