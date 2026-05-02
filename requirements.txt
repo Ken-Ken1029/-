@@ -2,7 +2,7 @@ flask
 mysql-connector-python
 flask_cors
 requests
-torch
+PyTorch
 opencc
 werkzeug
 pydub
@@ -12,3 +12,4 @@ onnxruntime
 opencv-python-headless
 numpy
 Pillow
+openai-whisper
