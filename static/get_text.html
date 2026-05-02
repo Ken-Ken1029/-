@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字识别</title>
+    <link rel="stylesheet" href="./css/get_text.css">
+</head>
+<body>
+    <div id="app">
+        <h1>文字识别</h1>
+        <div class="upload-container">
+            <input type="file" @change="handleFileUpload" accept="image/*">
+            <div v-if="data.imageSrc" class="image-preview">
+                <h2>上传的图片</h2>
+                <img :src="data.imageSrc" alt="Uploaded Image">
+            </div>
+            <div v-show="data.have_text" class="processed-image">
+                <h2>处理后的图片</h2>
+                <img :src="data.processedImageSrc" alt="Processed Image">
+            </div>
+            <div v-if="data.recognizedText" class="recognized-text">
+                <h2>识别出的文字</h2>
+                <p>{{ data.recognizedText }}</p>
+            </div>
+        </div>
+    </div>
+    <script src="./script/get_text.js" type="module"></script>
+</body>
+</html>

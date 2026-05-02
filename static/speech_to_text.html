@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音识别模块</title>
+    <link rel="stylesheet" href="./css/speech_to_text.css">
+</head>
+<body>
+    <div class="container">
+        <h1>文件语音识别</h1>
+
+        <div class="upload-section">
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <p>点击或拖放音频文件到此处</p>
+                <p><small>支持格式: WAV, MP3, OGG, M4A</small></p>
+            </div>
+            <input type="file" id="fileInput" accept=".wav,.mp3,.ogg,.m4a" onchange="handleFileSelect(event)">
+
+            <div id="fileInfo" class="file-info"></div>
+
+            <button id="transcribeBtn" onclick="transcribeAudio()" disabled>开始识别</button>
+            <button id="copyBtn" class="copy-btn" onclick="copyResult()" disabled>复制结果</button>
+
+            <div id="result" class="result-section">
+                <h3>识别结果</h3>
+                <div id="resultText"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>实时语音转录</h1>
+        <p id="status">点击开始转录，麦克风已关闭。</p>
+
+        <div class="audio-visualizer">
+            <canvas id="visualizer"></canvas>
+        </div>
+
+        <button id="startBtn" onclick="startRecording()">开始转录</button>
+        <button id="stopBtn" class="btn-danger" onclick="stopRecording()" style="display: none;">停止转录</button>
+        <button id="clearBtn" class="btn-warning" onclick="clearTranscript()">清空转录</button>
+        <button id="copyLiveBtn" class="copy-btn" onclick="copyLiveResult()" disabled>复制结果</button>
+
+        <div id="liveResult" class="result-section">
+            <h3>转录结果:</h3>
+            <div id="interimResult"></div>
+            <div id="liveResultText"></div>
+        </div>
+    </div>
+
+    <script src="./script/speech_to_text.js"></script>
+</body>
+</html>

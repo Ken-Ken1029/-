@@ -1,0 +1,209 @@
+/* 全局样式 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 确保高度占满屏幕 */
+    font-family: Arial, sans-serif;
+    background-color: #fdffe9;
+    font-size: 20px;
+}
+
+/* 主容器样式 */
+#app {
+    width: 75%;
+    min-height: 100vh; /* 最小高度占满屏幕 */
+    margin: 0 auto; /* 水平居中 */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 标题样式 */
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50; /* 深蓝色标题 */
+    margin: 20px 0; /* 上下边距 */
+    text-align: center;
+    font-weight: 600; /* 加粗 */
+    width: 100%; /* 宽度占满容器 */
+}
+
+/* 列表样式 */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%; /* 列表宽度占满容器 */
+    max-width: 800px;
+    margin-top: 50px; /* 与标题的间距 */
+}
+
+/* 列表项样式 */
+li {
+    background-color: #f9f9f9; /* 浅灰色背景 */
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 10px; /* 圆角 */
+    border: 1px solid #e0e0e0; /* 浅灰色边框 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* 悬停动画 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 内容分布在两端 */
+    height: 100px; /* 固定高度 */
+    width: 100%; /* 固定宽度 */
+    max-width: 800px; /* 最大宽度 */
+    min-width: 600px;
+    position: relative; /* 为按钮定位 */
+}
+
+li:hover {
+    transform: translateY(-5px); /* 悬停时上移 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* 悬停时阴影 */
+}
+
+/* 笔记内容容器样式 */
+.note-content {
+    width: 100%;
+    height: 550px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    line-height: 1.5;
+    overflow-y: auto;
+    box-sizing: border-box; /* 确保内边距不增加宽度 */
+    direction: ltr; /* 从左往右 */
+    text-align: left; /* 文字左对齐 */
+}
+
+/* 笔记标题样式 */
+h2 {
+    width: 60%; /* 固定宽度 */
+    height: 100%; /* 高度占满父容器 */
+    font-size: 1.5rem;
+    color: #34495e; /* 深蓝灰色 */
+    margin: 0; /* 去掉默认的外边距 */
+    font-weight: 500; /* 中等加粗 */
+    overflow: hidden; /* 隐藏超出部分 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    white-space: normal; /* 允许换行 */
+    word-break: break-word; /* 长单词换行 */
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items: center; /* 垂直居中 */
+    text-align: center; /* 文字居中 */
+}
+
+/* 笔记时间样式 */
+p {
+    font-size: 0.9rem;
+    color: #7f8c8d; /* 浅灰色 */
+    margin: 0;
+}
+
+/* 按钮容器样式 */
+.button-container {
+    width: 25%; /* 固定宽度 */
+    display: flex;
+    gap: 10px; /* 按钮之间的间距 */
+    justify-content: flex-end; /* 按钮靠右 */
+    align-items: center; /* 垂直居中 */
+}
+
+/* 按钮样式 */
+.button-container button {
+    padding: 10px 20px; /* 增大按钮尺寸 */
+    border: none;
+    border-radius: 5px;
+    background-color: #2c3e50; /* 深蓝色 */
+    color: #ffffff; /* 白色文字 */
+    font-size: 1rem; /* 增大字体 */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button-container button:hover {
+    background-color: #34495e; /* 悬停时颜色变深 */
+}
+
+
+
+/* 修改界面 */
+.alter_note {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* 确保内边距不增加宽度 */
+    text-align: center;
+}
+
+.alter_note h1 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 36px;
+}
+
+.alter_note input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    box-sizing: border-box; /* 确保内边距不增加宽度 */
+}
+
+.alter_note .toolbar {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap; /* 工具栏按钮换行 */
+    gap: 10px; /* 按钮之间的间距 */
+}
+
+.alter_note .toolbar button, .alter_note .toolbar select {
+    height: 40px;
+    padding: 8px 12px; /* 统一内边距 */
+    font-size: 16px; /* 统一字体大小 */
+    border: 1px solid #ccc; /* 统一边框 */
+    border-radius: 4px; /* 统一圆角 */
+    background-color: #f9f9f9; /* 统一背景色 */
+    color: #000000; /* 统一文字颜色 */
+    cursor: pointer; /* 统一鼠标样式 */
+    outline: none; /* 移除默认聚焦边框 */
+}
+
+.alter_note .toolbar select {
+    margin-top: 25px;
+}
+
+.alter_note .toolbar button:hover, .toolbar select:hover {
+    background-color: #e0e0e0; /* 悬停时背景色变深 */
+    border-color: #999; /* 悬停时边框颜色变深 */
+}
+
+.alter_note .note-content {
+    width: 100%;
+    height: 550px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    line-height: 1.5;
+    overflow-y: auto;
+    box-sizing: border-box; /* 确保内边距不增加宽度 */
+    direction: ltr; /* 从左往右 */
+    text-align: left; /* 文字左对齐 */
+    vertical-align: top; /* 文字顶部对齐 */
+}
+
+.alter_note button {
+    margin: 25px 40px;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.alter_note button:hover {
+    background-color: #0056b3;
+}

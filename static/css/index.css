@@ -1,0 +1,186 @@
+/* 重置默认样式 */
+body, h1, h2, p, button, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to left,
+    #d3ecf3,#8ed5fc);
+}
+
+/* 用户信息样式 */
+.user-info {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.gohome {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gohome img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.gohome:hover img {
+    transform: scale(1.2);
+}
+
+.user-info .avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info .username {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+.user-info .more-info {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    width: 200px;
+}
+
+.user-info:hover .more-info {
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-info .more-info ul {
+    list-style: none;
+}
+
+.user-info .more-info ul li {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* 功能模块容器 - 修改为3列2行布局 */
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 改为3列 */
+    grid-template-rows: repeat(2, 1fr); /* 保持2行 */
+    gap: 20px;
+    justify-content: center;
+    align-content: center;
+    top: 200px;
+    height: 50vh;
+    width: 70%; /* 增加宽度以适应3列 */
+    margin: 0 auto;
+}
+
+/* 功能模块样式 */
+.function-module {
+    background-color: #b9fdff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 让第五个模块居中 */
+.function-module:nth-child(5) {
+    grid-column: 2; /* 放在第二列 */
+}
+
+.function-module:hover {
+    transform: translateY(-10px);
+}
+
+.function-module h2 {
+    font-size: 45px;
+    color: #444;
+    text-align: center;
+    font-weight: bold;
+    transition: font-size 0.3s ease;
+}
+
+.function-module:hover h2 {
+    font-size: 50px;
+}
+
+.function-module p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.function-module button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.function-module button:hover {
+    background-color: #0056b3;
+}
+
+.secondary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

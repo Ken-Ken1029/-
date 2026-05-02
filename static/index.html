@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云笔记系统</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- 添加样式用于个人信息点击效果 -->
+    <style>
+        .user-info {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .user-info:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 用户信息 - 添加点击事件 -->
+        <div class="user-info" @click="openPersonal">
+            <div class="avatar">
+                <img src="./img/0.jpg" alt="用户头像">
+            </div>
+            <span class="username">{{data.username}}</span>
+            <div class="more-info">
+                <ul>
+                    <li>今天一亦是美好的一天！</li>
+                    <li>注册时间: {{data.sign_time}}</li>
+                    <li>上次登录: {{data.last_time}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 回主页 -->
+        <div @click="goHome" class="gohome"><img src="./img/home.png" alt=""></div>
+
+        <!-- 功能模块 -->
+        <div v-show="data.isIndex" class="container">
+            <div @click="isNewNote" class="function-module">
+                <h2>新建笔记</h2>
+            </div>
+            <div @click="isHistoryNote" class="function-module">
+                <h2>历史笔记</h2>
+            </div>
+            <div @click="isGetText" class="function-module">
+                <h2>文字识别</h2>
+            </div>
+            <div @click="isAIQuestion" class="function-module">
+                <h2>AI问答</h2>
+            </div>
+            <div @click="isSpeechToText" class="function-module">
+                <h2>语音转文本</h2>
+            </div>
+            <div @click="isMistakes" class="function-module">
+                <h2>错题集</h2>
+            </div>
+        </div>
+
+        <!-- 新增个人主页iframe容器 -->
+        <div v-show="data.isPersonal" class="secondary">
+            <iframe src="./personal.html" id="personalFrame"></iframe>
+        </div>
+
+        <div v-show="data.isNewNote" class="secondary">
+            <iframe src="./note.html"></iframe>
+        </div>
+
+        <div v-show="data.isHistoryNote" class="secondary">
+            <iframe src="./history.html"></iframe>
+        </div>
+
+        <div v-show="data.isGetText" class="secondary">
+            <iframe src="./get_text.html"></iframe>
+        </div>
+        <div v-show="data.isAIQuestion" class="secondary">
+            <iframe src="./get_ai.html"></iframe>
+        </div>
+        <div v-show="data.isSpeechToText" class="secondary">
+            <iframe src="./speech_to_text.html"></iframe>
+        </div>
+        <div v-show="data.isMistakes" class="secondary">
+            <iframe src="./mistakes.html"></iframe>
+        </div>
+    </div>
+    <script src="./script/index.js" type="module"></script>
+</body>
+</html>

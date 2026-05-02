@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建新笔记</title>
+    <link rel="stylesheet" href="./css/note.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>建新笔记</h1>
+            <input type="text" v-model="data.noteTitle" placeholder="输入标题">
+            <div class="toolbar">
+                <button @click="formatText('bold')">加粗</button>
+                <button @click="formatText('italic')">斜体</button>
+                <button @click="formatText('underline')">下划线</button>
+                <select @change="changeColor($event.target.value)">
+                    <option value="black">黑色</option>
+                    <option value="red">红色</option>
+                    <option value="blue">蓝色</option>
+                    <option value="green">绿色</option>
+                </select>
+                <select @change="changeSize($event.target.value)">
+                    <option value="20px">小</option>
+                    <option value="28px">中</option>
+                    <option value="36px">大</option>
+                </select>
+                <button @click="clearStyles">清空样式</button>
+            </div>
+            <div
+                id="noteContent"
+                contenteditable="true"
+                class="note-content"
+                @input="updateNoteContent"
+            ></div>
+            <!-- 初始时，这里不再通过v-html插入内容 -->
+            <button @click="saveNote">保存笔记</button>
+        </div>
+    </div>
+
+    <script src="./script/note.js" type="module"></script>
+</body>
+</html>
+<!--
+1、移除v-html指令：从<div id="noteContent">元素中移除v-html="data.noteContent"。
+2、使用contenteditable属性：您已经在这个元素上设置了contenteditable="true"，这允许用户直接编辑元素的内容。
+3、绑定输入事件：您已经有一个@input="updateNoteContent"事件监听器，用于在内容变化时更新Vue实例中的数据。确保您的Vue实例中有相应的updateNoteContent方法来处理这个事件。
+4、初始化内容：在Vue实例的data函数中，确保noteContent属性被正确初始化，以便在页面加载时显示正确的笔记内容。
+-->

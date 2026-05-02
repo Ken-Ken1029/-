@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错题集</title>
+    <link rel="stylesheet" href="./css/mistakes.css">
+</head>
+<body>
+    <div class="container">
+        <h1>错题集</h1>
+
+        <div class="section">
+            <h2>添加错题</h2>
+            <div class="form-group">
+                <label for="question">题目：</label>
+                <textarea id="question" rows="4" placeholder="请输入题目内容"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="answer">答案：</label>
+                <textarea id="answer" rows="4" placeholder="请输入正确答案"></textarea>
+            </div>
+            <button id="add-btn" class="btn">添加到错题本</button>
+        </div>
+
+        <div class="section">
+            <h2>温故而知新</h2>
+            <div class="btn-group">
+                <button id="review-btn" class="btn">复习错题</button>
+                <button id="bank-btn" class="btn">查看题库</button>
+            </div>
+
+            <div id="review-section" class="hidden">
+                <div class="question-display">
+                    <h3>题目：</h3>
+                    <div id="review-question" class="question-content"></div>
+                </div>
+                <div class="form-group">
+                    <label for="user-answer">你的答案：</label>
+                    <textarea id="user-answer" rows="4" placeholder="请在此输入你的答案"></textarea>
+                </div>
+                <button id="submit-answer-btn" class="btn">提交答案</button>
+                <div class="answer-section hidden">
+                    <h3>正确答案：</h3>
+                    <div id="review-answer" class="answer-content"></div>
+                    <div class="result-feedback"></div>
+                    <div class="action-buttons">
+                        <button id="correct-btn" class="btn success hidden">回答正确(移入题库)</button>
+                        <button id="try-again-btn" class="btn danger">再试一次
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bank-section" class="hidden">
+                <h3>题库内容：</h3>
+                <div id="question-bank" class="bank-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script/mistakes.js"></script>
+</body>
+</html>

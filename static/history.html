@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史笔记</title>
+    <link rel="stylesheet" href="./css/history.css">
+</head>
+<body>
+    <div id="app">
+        <div v-show="data.isHistoryNote">
+            <h1>历史笔记</h1>
+            <ul>
+                <li v-for="note in data.historyNotes" :key="note.id" @mouseenter="setNoteTitle(note.note_title)">
+                    <h2 @click="lookNote">{{ note.note_title }}</h2>
+                    <p>{{ note.save_time }}</p>
+                    <div class="button-container">
+                        <button @click="alterNote">修改</button>
+                        <button @click="delNote">删除</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- 修改笔记 -->
+        <div v-show="!data.isHistoryNote" class="alter_note" id="alter_note">
+            <h1>云笔记</h1>
+            <input type="text" v-model="data.noteTitle" placeholder="输入标题">
+            <div class="toolbar">
+                <button @click="formatText('bold')">加粗</button>
+                <button @click="formatText('italic')">斜体</button>
+                <button @click="formatText('underline')">下划线</button>
+                <select @change="changeColor($event.target.value)">
+                    <option value="black">黑色</option>
+                    <option value="red">红色</option>
+                    <option value="blue">蓝色</option>
+                    <option value="green">绿色</option>
+                </select>
+                <select @change="changeSize($event.target.value)">
+                    <option value="20px">小</option>
+                    <option value="28px">中</option>
+                    <option value="36px">大</option>
+                </select>
+                <button @click="clearStyles">清空样式</button>
+            </div>
+            <div
+                id="noteContent"
+                contenteditable="true"
+                class="note-content"
+                @input="updateNoteContent"
+                ref="noteContent"
+            ></div>
+            <button v-show="!data.isLook" @click="goBack">取消修改</button>
+            <button v-show="!data.isLook" @click="save_alterNote">确认修改</button>
+            <button v-show="data.isLook" @click="goBack">返回</button>
+        </div>
+
+    </div>
+    <script src="./script/history.js" type="module"></script>
+</body>
+</html>
+<!--
+1、移除了v-html="data.noteContent"指令
+2、添加了ref="noteContent"以便在JavaScript中直接操作DOM元素
+3、需要在JavaScript代码中做相应调整，使用textContent或innerText来设置和获取内容，而不是innerHTML
+-->

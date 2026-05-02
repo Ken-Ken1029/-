@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 问答</title>
+    <link rel="stylesheet" href="./css/get_ai.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>AI 问答</h1>
+            <div class="chat-box">
+                <div v-for="(msg, index) in data.messages" :key="index" :class="msg.role">
+                    <strong>{{ msg.role === 'user' ? '你' : 'AI' }}:</strong> {{ msg.content }}
+                </div>
+            </div>
+            <div class="input-box">
+                <input v-model="data.userInput" @keyup.enter="sendMessage" placeholder="输入你的问题...">
+                <button @click="sendMessage">{{ data.button_text }}</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./script/get_ai.js" type="module"></script>
+</body>
+</html>

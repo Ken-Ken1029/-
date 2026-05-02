@@ -1,0 +1,88 @@
+body{
+    /* 设置背景渐变 */
+    /* background-image: linear-gradient(to left,
+    #9c88ff,#3cadeb); */
+    background-image: linear-gradient(to left,
+    #d3ecf3,#8ed5fc);
+    display: flex;
+    justify-content: center;
+}
+.login-container{
+    position:relative;
+    top: 150px;
+    width: 1200px;
+    height: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.8);
+    display: flex;
+}
+.login-image{
+    width: 825px;
+    height: 600px;
+    border-radius: 10px 0 0 10px;
+}
+.login-div{
+    width: 375px;
+    height: 600px;
+    border-radius: 0 10px 10px 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-user{
+    width: 270px;
+    height: 525px;
+}
+.input-user h1{
+    font: 1000 40px '';
+    text-align: center;
+}
+.user-logn{
+    width: 225px;
+    margin: 30px 0;
+    outline: none;
+    border: 0;
+    padding: 15px;
+    border-bottom: 3px solid rgb(125, 155, 225);
+    font: 800 20px '';
+}
+.user-sign{
+    width: 225px;
+    margin: 10px 0;
+    outline: none;
+    border: 0;
+    padding: 15px;
+    border-bottom: 3px solid rgb(125, 155, 225);
+    font: 800 20px '';
+}
+.sign-up{
+    float: right;
+    margin: 15px 15px;
+}
+.login-up{
+    position: absolute;
+    margin: 30px;
+    bottom: 50px;
+    display: block;
+    width: 200px;
+    height: 75px;
+    font: 700 35px '';
+    text-decoration: none;
+    line-height: 75px;
+    border-radius: 45px;
+    background-image: linear-gradient(to left,
+    #c3e8f3,#8ed5fc);
+    text-align: center;
+}
+.error-message {
+    position: absolute;
+    margin: 40px;
+    bottom: 0;
+    width: 200px;
+    display: block;
+    font: 540 15px '';
+    color: red;
+    text-align: center;
+}
+
