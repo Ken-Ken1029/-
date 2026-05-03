@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 元素引用
     const addBtn = document.getElementById('add-btn');
     const reviewBtn = document.getElementById('review-btn');
     const bankBtn = document.getElementById('bank-btn');
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentQuestion = null;
 
-    // 添加错题
+    // 添加错题 - 已经是相对路径，无需修改
     addBtn.addEventListener('click', function() {
         const question = document.getElementById('question').value.trim();
         const answer = document.getElementById('answer').value.trim();
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 复习错题
     reviewBtn.addEventListener('click', function() {
         bankSection.classList.add('hidden');
         reviewSection.classList.remove('hidden');
@@ -56,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadRandomQuestion();
     });
 
-    // 提交答案
     submitAnswerBtn.addEventListener('click', function() {
         const userAnswer = userAnswerTextarea.value.trim();
         if (!userAnswer) {
@@ -67,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         answerSection.classList.remove('hidden');
         const correctAnswer = currentQuestion.answer;
 
-        // 简单比较答案（实际应用中可能需要更复杂的比较逻辑）
         if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
             resultFeedback.innerHTML = '<p class="correct">回答正确！</p>';
             correctBtn.classList.remove('hidden');
@@ -77,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 回答正确(移入题库)
     correctBtn.addEventListener('click', function() {
         if (!currentQuestion) return;
 
@@ -92,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.success) {
                 alert('题目已移入题库');
-                reviewBtn.click(); // 自动获取下一题
+                reviewBtn.click();
             } else {
                 alert(data.message);
             }
@@ -103,21 +98,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // 再试一次
     tryAgainBtn.addEventListener('click', function() {
         answerSection.classList.add('hidden');
         userAnswerTextarea.value = '';
         userAnswerTextarea.focus();
     });
 
-    // 查看题库
     bankBtn.addEventListener('click', function() {
         reviewSection.classList.add('hidden');
         bankSection.classList.remove('hidden');
         loadQuestionBank();
     });
 
-    // 加载随机题目
     function loadRandomQuestion() {
         fetch('/get_random_question')
         .then(response => response.json())
@@ -137,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 加载题库
     function loadQuestionBank() {
         fetch('/get_question_bank')
         .then(response => response.json())
@@ -150,8 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const bankItem = document.createElement('div');
                     bankItem.className = 'bank-item';
                     bankItem.innerHTML = `
-                        <div class="bank-question">${item.question}</div>
-                        <div class="bank-answer">${item.answer}</div>
+                        <div class="bank-question">${escapeHtml(item.question)}</div>
+                        <div class="bank-answer">${escapeHtml(item.answer)}</div>
                     `;
                     bankContainer.appendChild(bankItem);
                 });
@@ -162,6 +153,19 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error:', error);
             alert('获取题库失败');
+        });
+    }
+
+    // 辅助函数：防止XSS攻击
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
         });
     }
 });
