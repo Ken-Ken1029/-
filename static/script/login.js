@@ -13,7 +13,6 @@ createApp({
         const isLogin = () => {
             data.isLogin = !data.isLogin
             data.error = ''
-            // 清空密码字段
             data.password = ''
             data.ispassword = ''
         }
@@ -24,7 +23,6 @@ createApp({
                 return false
             }
 
-            // 添加长度验证
             if (data.username.length < 4 || data.username.length > 20) {
                 data.error = '用户名长度必须在4到20个字符之间'
                 return false
@@ -42,7 +40,8 @@ createApp({
             if (!validateInputs()) return
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/login', {
+                // 修改：使用相对路径
+                const response = await fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -77,7 +76,8 @@ createApp({
             }
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/login', {
+                // 修改：使用相对路径
+                const response = await fetch('/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -94,7 +94,6 @@ createApp({
                 if (result.success) {
                     data.isLogin = true
                     data.error = '注册成功，请登录'
-                    // 清空确认密码字段
                     data.ispassword = ''
                 } else {
                     data.error = result.message || '注册失败'
