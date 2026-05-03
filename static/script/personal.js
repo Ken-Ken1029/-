@@ -7,7 +7,6 @@ class UserProfile {
     }
 
     initEventListeners() {
-        // 使用事件委托处理所有按钮点击
         document.addEventListener('click', (event) => {
             const button = event.target.closest('button');
             if (!button) return;
@@ -33,19 +32,16 @@ class UserProfile {
     }
 
     showEditForm(field) {
-        // 隐藏当前字段的修改按钮
         const editButton = document.querySelector(`button[data-action="show-edit"][data-field="${field}"]`);
         if (editButton) {
             editButton.classList.add('hidden');
         }
 
-        // 显示编辑表单
         const editForm = document.getElementById(`${field}-edit`);
         if (editForm) {
             editForm.style.display = 'block';
         }
 
-        // 预填充当前值（密码除外）
         if (field !== 'password') {
             const displayElement = document.getElementById(`${field}-display`);
             const inputElement = document.getElementById(`${field}-input`);
@@ -56,13 +52,11 @@ class UserProfile {
     }
 
     hideEditForm(field) {
-        // 隐藏编辑表单
         const editForm = document.getElementById(`${field}-edit`);
         if (editForm) {
             editForm.style.display = 'none';
         }
 
-        // 显示当前字段的修改按钮
         const editButton = document.querySelector(`button[data-action="show-edit"][data-field="${field}"]`);
         if (editButton) {
             editButton.classList.remove('hidden');
@@ -155,6 +149,7 @@ class UserProfile {
         }
     }
 
+    // 修改：使用相对路径
     async callApi(url, data) {
         const response = await fetch(url, {
             method: 'POST',
