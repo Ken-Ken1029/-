@@ -3,11 +3,10 @@ import {createApp, reactive} from './vue.esm-browser.js'
 createApp({
     setup() {
         const data = reactive({
-            noteTitle: '', // 笔记标题
-            noteContent: '', // 笔记内容
+            noteTitle: '',
+            noteContent: '',
         });
 
-        // 格式化文本
         const formatText = (command) => {
             const selection = window.getSelection();
             if (!selection.rangeCount) return;
@@ -34,7 +33,6 @@ createApp({
             selection.addRange(range);
         };
 
-        // 改变文字颜色
         const changeColor = (color) => {
             const selection = window.getSelection();
             if (!selection.rangeCount) return;
@@ -48,7 +46,6 @@ createApp({
             selection.addRange(range);
         };
 
-        // 改变文字大小
         const changeSize = (size) => {
             const selection = window.getSelection();
             if (!selection.rangeCount) return;
@@ -62,20 +59,16 @@ createApp({
             selection.addRange(range);
         };
 
-        // 清空样式
         const clearStyles = () => {
             const noteContent = document.getElementById('noteContent');
             const spanElements = noteContent.querySelectorAll('span');
 
             spanElements.forEach(span => {
-                // 创建一个文本节点，内容为 <span> 的文本
                 const textNode = document.createTextNode(span.textContent);
-                // 用文本节点替换 <span> 标签
                 span.replaceWith(textNode);
             });
         };
 
-        // 更新笔记内容
         const updateNoteContent = (event) => {
             data.noteContent = event.target.innerHTML;
         };
@@ -84,7 +77,8 @@ createApp({
         const saveNote = async () => {
             const username = localStorage.getItem('username') || '';
             try {
-                const response = await fetch('http://127.0.0.1:5000/saveNote', {
+                // 修改：使用相对路径
+                const response = await fetch('/saveNote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -92,7 +86,7 @@ createApp({
                     body: JSON.stringify({
                         username: username,
                         note_title: data.noteTitle,
-                        note_content: data.noteContent, // 包含样式的 HTML 内容
+                        note_content: data.noteContent,
                     })
                 })
 
