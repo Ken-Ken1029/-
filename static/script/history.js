@@ -13,7 +13,6 @@ createApp({
 
         const username = localStorage.getItem('username') || '';
 
-        // 设置 noteTitle
         const setNoteTitle = (title) => {
             data.noteTitle = title;
         };
@@ -21,7 +20,8 @@ createApp({
         // 查询历史笔记
         const historyNote = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/historyNote', {
+                // 修改：使用相对路径
+                const response = await fetch('/historyNote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -43,14 +43,14 @@ createApp({
             }
         };
 
-        // 初始化加载历史笔记
         historyNote();
 
         // 点击修改按钮
         const alterNote = async () => {
             if (data.noteTitle === '暂无') return;
             try {
-                const response = await fetch('http://127.0.0.1:5000/alterNote', {
+                // 修改：使用相对路径
+                const response = await fetch('/alterNote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -68,7 +68,6 @@ createApp({
                     data.id = result.id;
                     data.isHistoryNote = false;
 
-                    // 设置内容到可编辑区域
                     const noteContentEl = document.getElementById('noteContent');
                     if (noteContentEl) {
                         noteContentEl.innerHTML = result.note_content || '';
@@ -87,7 +86,8 @@ createApp({
             if (!confirm('确定要删除此笔记吗？')) return;
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/delNote', {
+                // 修改：使用相对路径
+                const response = await fetch('/delNote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -110,27 +110,23 @@ createApp({
             }
         };
 
-        // 点击直接查看
         const lookNote = () => {
             data.isLook = true;
             alterNote();
         };
 
-        // 格式化文本
         const formatText = (command) => {
             document.execCommand(command, false, null);
             updateNoteContent();
         };
 
-        // 改变文字颜色
         const changeColor = (color) => {
             document.execCommand('foreColor', false, color);
             updateNoteContent();
         };
 
-        // 改变文字大小
         const changeSize = (size) => {
-            document.execCommand('fontSize', false, '7'); // 7是最大的预设值
+            document.execCommand('fontSize', false, '7');
             const fontElements = document.querySelectorAll('font[size="7"]');
             fontElements.forEach(el => {
                 el.removeAttribute('size');
@@ -139,7 +135,6 @@ createApp({
             updateNoteContent();
         };
 
-        // 清空样式
         const clearStyles = () => {
             const noteContentEl = document.getElementById('noteContent');
             if (noteContentEl) {
@@ -149,7 +144,6 @@ createApp({
             }
         };
 
-        // 更新笔记内容
         const updateNoteContent = () => {
             const noteContentEl = document.getElementById('noteContent');
             if (noteContentEl) {
@@ -157,7 +151,6 @@ createApp({
             }
         };
 
-        // 返回历史记录
         const goBack = () => {
             data.isHistoryNote = true;
             data.isLook = false;
@@ -171,7 +164,8 @@ createApp({
             }
 
             try {
-                const response = await fetch('http://127.0.0.1:5000/save_alterNote', {
+                // 修改：使用相对路径
+                const response = await fetch('/save_alterNote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
